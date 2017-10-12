@@ -27,10 +27,14 @@ massive(process.env.CONNECTION_STRING)
 
     app.post('/api/auth/login', main.login);
     app.post('/api/auth/register', main.register);
-    app.get('/user', (req, res) => {
-        console.log(req.session.user);
-        res.send(req.session.user);
-    })
+    app.post('/api/favorites/:id', main.favorite);
+    
+    app.get('/api/properties', main.getAllHouses);
+
+    // app.get('/user', (req, res) => {
+    //     console.log(req.session.user);
+    //     res.send(req.session.user);
+    // });
 
 // app.listen(port, () => {
 //     console.log(`Running on port: ${port}`);

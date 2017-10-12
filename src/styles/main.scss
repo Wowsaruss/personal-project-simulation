@@ -1,2 +1,9 @@
-@import 'login';
-@import 'dashboard';
+@import 'reset';
+@import 'mixins';
+@import 'variables';
+@import 'global';
+
+@import './pages/_login.scss';
+@import './pages/_dashboard.scss';
+
+

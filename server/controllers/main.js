@@ -33,6 +33,20 @@ module.exports = {
             res.status(401).send();
         }
     });
+    },
+
+    getAllHouses(req, res) {
+        req.app.get('db').getAllHouses().then(houses => res.status(200).send(houses));
+    },
+
+    favorite(req, res) {
+        req.app.get('db').checkDuplicateFavorite([req.session.user.id, req.params.id]).then((matches) => {
+            if(matches[0]) {
+                res.send();
+            } else {
+                req.app.get('db').addFavorites([req.session.user.id, req.params.id]).then(() => { res.send(); });
+            }
+        });
     }
 
-}
+};
