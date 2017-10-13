@@ -9,15 +9,18 @@ export default class Dashboard extends React.Component {
     super();
     this.state = {
       houses: [],
-      favoriteHouses: []
+      favoriteHouses: [],
+      unfavorite: []
     };
-  }
+    this.favorite = this.favorite.bind(this);
+    this.unfavorite = this.unfavorite.bind(this);
+  } 
 
   componentDidMount() {
     axios.get('/api/properties').then((houses) => {
       this.setState({
         houses: houses.data
-      });
+      }); 
     });
     axios.get('/api/favorites').then((favorites) => {
       this.setState({
@@ -28,6 +31,14 @@ export default class Dashboard extends React.Component {
 
   favorite(houseId) {
     axios.post(`/api/favorites/${houseId}`).then((favHouses) => {
+      console.log(favHouses)
+      this.setState({
+        favoriteHouses: favHouses.data
+      });
+    });
+  }
+  unfavorite(houseId) {
+    axios.delete(`/api/favorites/${houseId}`).then((favHouses) => {
       this.setState({
         favoriteHouses: favHouses.data
       });
@@ -35,8 +46,15 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     const houses = this.state.houses.map((house) => (
-      <HouseCard house={house} favorites={this.state.favoriteHouses} key={house.id} />
+      <HouseCard
+        house={house}
+        favoriteHouses={this.state.favoriteHouses}
+        key={house.id} 
+        favorite={this.favorite}
+        unfavorite={this.unfavorite}
+         />
     ));
     return (
       <div className='dashboard' >

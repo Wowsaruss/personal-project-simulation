@@ -32,6 +32,8 @@ massive(process.env.CONNECTION_STRING)
     app.get('/api/properties', main.getAllHouses);
     app.get('/api/favoritesid', main.getFavoritesId);
 
+    app.delete('/api/favorites/:id', main.unfavorite);
+
     // app.get('/user', (req, res) => {
     //     console.log(req.session.user);
     //     res.send(req.session.user);
@@ -40,3 +42,6 @@ massive(process.env.CONNECTION_STRING)
 // app.listen(port, () => {
 //     console.log(`Running on port: ${port}`);
 // })
+
+// to start nodemon server run below
+// npm run server

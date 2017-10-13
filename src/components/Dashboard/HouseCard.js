@@ -7,11 +7,31 @@ class HouseCard extends Component {
         this.state = {
             house: props.house,
             favorites: props.favorites,
-            favorite: false
+            favorited: false
         };
     }
 
+    componentWillReceiveProps(newProps) {
+        let flag = false;
+        newProps.favoriteHouses.forEach((item) => {
+            if(item.houseid === this.state.house.id) {
+                flag = true;
+                console.log('working');
+                this.setState({
+                    favorited: true
+                });
+
+            }
+        });
+        if(flag === false) {
+            this.setState({
+                favorited: false
+            });
+        }
+    }
+
         render() {
+            console.log(this.state);
             const {house} = this.state;
             return(
                 <div className='house-card' >
@@ -25,7 +45,12 @@ class HouseCard extends Component {
                 <div className='right' >
                     <div className='spread' >
                       <h2>Loan: ${house.loan}</h2>
-                      <div onClick={() => {this.favorite(house.id);}} >⭐</div>
+                      {this.state.favorited
+                      ?
+                      (<div onClick={() => {this.props.unfavorite(house.id);}} >🌟</div>)
+                      :
+                      (<div onClick={() => {this.props.favorite(house.id);}} >⭐</div>)
+                      }
                     </div>
                     <h2>Desired Rent: ${house.desiredrent}</h2>
                     <h2>Address: {house.address}</h2>
