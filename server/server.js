@@ -28,8 +28,9 @@ massive(process.env.CONNECTION_STRING)
     app.post('/api/auth/login', main.login);
     app.post('/api/auth/register', main.register);
     app.post('/api/favorites/:id', main.favorite);
-    
+
     app.get('/api/properties', main.getAllHouses);
+    app.get('/api/favoritesid', main.getFavoritesId);
 
     // app.get('/user', (req, res) => {
     //     console.log(req.session.user);

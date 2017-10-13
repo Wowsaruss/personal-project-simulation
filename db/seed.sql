@@ -73,6 +73,19 @@ values
 'parks'
 );
 
+insert into houses (img, loan, name, description, desiredrent, address, zip, city, state)
+values(
+'http://imagescdn.gabriels.net/reno/imagereader.aspx?imageurl=http%3A%2F%2Fm.sothebysrealty.com%2F1103i215%2F8ceqq6py02n5m6jq94w18e5sw6i215&option=N&w=1600&permitphotoenlargement=false',
+50000000,
+'OWL MOUNTAIN RANCH',
+'Never before offered legacy ranch! Located adjacent to West Buttermilk Ski Area on 61 private acres at the end of the road. The property includes a 15,664 square foot main home with 7 bedrooms, 7 full baths, and 3 half baths, as well as a 2,000 square foot caretakers home with 3 bedrooms and 3 full baths, plus a 7,500 square foot barn that includes a 3,000 square foot heated vehicle maintenance center with lift. Additional features include an inviting great room, chefs kitchen with two ovens, study, theater, pub room, wine room, billiards room, vaulted ceilings, rich wooden accents, private ski run, amazing views and much more. The living area is extended outdoors with a covered and heated dining space, fireplace and sunken hot tub overlooking the ski area. This is the only ski-in/ski-out property on West Buttermilk and it can never be duplicated!',
+25000,
+'2900 WEST BUTTERMILK ROAD',
+81611,
+'ASPEN',
+'COLORADO'
+)
+
 insert into favorites
 (userid, houseid)
 values

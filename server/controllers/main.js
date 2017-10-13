@@ -42,11 +42,24 @@ module.exports = {
     favorite(req, res) {
         req.app.get('db').checkDuplicateFavorite([req.session.user.id, req.params.id]).then((matches) => {
             if(matches[0]) {
-                res.send();
+                req.app.get('db').addFavorites([req.session.user.id, req.params.id]).then(() => {
+                    req.app.get('db').getUsersFavorites([req.session.user.id]).then((favorites) => {
+                    res.send(favorites);
+                });
+            });
             } else {
-                req.app.get('db').addFavorites([req.session.user.id, req.params.id]).then(() => { res.send(); });
+                req.app.get('db').addFavorites([req.session.user.id, req.params.id]).then(() => {
+                    req.app.get('db').getUsersFavorites([req.session.user.id]).then((favorites) => {
+                    res.send(favorites);
+                });
+                });
             }
         });
-    }
+    },
 
+    getFavoritesId(req, res) {
+        req.app.get('db').getUsersFavorites([req.session.user.id]).then((favorites) => {
+            res.send(favorites);
+    });
+    }
 };
